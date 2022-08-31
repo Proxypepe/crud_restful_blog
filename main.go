@@ -1,1 +1,7 @@
-package crud_restful_blog
+package main
+
+import "crud_restful_blog/api"
+
+func main() {
+	api.Run()
+}

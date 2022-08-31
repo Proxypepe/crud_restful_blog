@@ -5,6 +5,7 @@ import (
 	"github.com/badoux/checkmail"
 	"github.com/jinzhu/gorm"
 	"golang.org/x/crypto/bcrypt"
+	"html"
 	"log"
 	"strings"
 	"time"
@@ -36,13 +37,13 @@ func (u *User) BeforeSave() error {
 	return nil
 }
 
-//func (u *User) Prepare() {
-//	u.ID = 0
-//	u.Nickname = html.EscapeString(strings.TrimSpace(u.Nickname))
-//	u.Email = html.EscapeString(strings.TrimSpace(u.Email))
-//	u.CreatedAt = time.Now()
-//	u.UpdatedAt = time.Now()
-//}
+func (u *User) Prepare() {
+	u.ID = 0
+	u.Nickname = html.EscapeString(strings.TrimSpace(u.Nickname))
+	u.Email = html.EscapeString(strings.TrimSpace(u.Email))
+	u.CreatedAt = time.Now()
+	u.UpdatedAt = time.Now()
+}
 
 func (u *User) Validate(action string) error {
 	switch strings.ToLower(action) {

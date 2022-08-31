@@ -1,0 +1,19 @@
+version: '3'
+
+volumes:
+  blog_volume:
+
+services:
+
+  postgres_db:
+    image: postgres
+    restart: always
+    container_name: ns-user-db
+    ports:
+      - '32700:5432'
+    volumes:
+      - blog_volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: blog_api
